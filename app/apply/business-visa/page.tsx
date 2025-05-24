@@ -10,7 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export default function BusinessVisaApplication() {
   const [currentStep, setCurrentStep] = useState(1);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState<Record<string, any>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const steps = [
@@ -33,7 +33,7 @@ export default function BusinessVisaApplication() {
     "France", "Japan", "South Korea", "Singapore", "UAE", "Saudi Arabia", "Other"
   ];
 
-  const handleInputChange = (field, value) => {
+  const handleInputChange = (field: string, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
@@ -310,12 +310,12 @@ export default function BusinessVisaApplication() {
                   </div>
                 </div>
 
-                {formData.businessType && (
-                  <div className={`bg-gradient-to-r from-${selectedBusinessType?.color}-50 to-${selectedBusinessType?.color}-100 dark:from-${selectedBusinessType?.color}-900/20 dark:to-${selectedBusinessType?.color}-800/20 rounded-xl p-4 border border-${selectedBusinessType?.color}-200 dark:border-${selectedBusinessType?.color}-800`}>
+                {formData.businessType && selectedBusinessType && (
+                  <div className={`bg-gradient-to-r from-${selectedBusinessType.color}-50 to-${selectedBusinessType.color}-100 dark:from-${selectedBusinessType.color}-900/20 dark:to-${selectedBusinessType.color}-800/20 rounded-xl p-4 border border-${selectedBusinessType.color}-200 dark:border-${selectedBusinessType.color}-800`}>
                     <div className="flex items-center text-sm">
-                      <selectedBusinessType.icon className={`w-4 h-4 mr-2 text-${selectedBusinessType?.color}-600`} />
-                      <span className={`font-medium text-${selectedBusinessType?.color}-800 dark:text-${selectedBusinessType?.color}-300`}>
-                        Business Type: {selectedBusinessType?.label}
+                      <selectedBusinessType.icon className={`w-4 h-4 mr-2 text-${selectedBusinessType.color}-600`} />
+                      <span className={`font-medium text-${selectedBusinessType.color}-800 dark:text-${selectedBusinessType.color}-300`}>
+                        Business Type: {selectedBusinessType.label}
                       </span>
                     </div>
                   </div>

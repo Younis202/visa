@@ -103,6 +103,8 @@ const searchResults = [
   }
 ];
 
+type AmenityIconKey = keyof typeof amenityIcons;
+
 const amenityIcons = {
   "Free WiFi": Wifi,
   "Pool": Waves,
@@ -127,7 +129,7 @@ const amenityIcons = {
   "Desert Tours": Car,
   "Traditional Dining": Utensils,
   "Private Bathroom": Coffee
-};
+} as const;
 
 export default function HotelSearchPage() {
   const [filteredResults, setFilteredResults] = useState(searchResults);
@@ -140,7 +142,7 @@ export default function HotelSearchPage() {
   });
   const [sortBy, setSortBy] = useState("recommended");
   const [filterOpen, setFilterOpen] = useState(false);
-  const [hoveredHotel, setHoveredHotel] = useState(null);
+  const [hoveredHotel, setHoveredHotel] = useState<number | null>(null);
   const [favorites, setFavorites] = useState(new Set());
 
   useEffect(() => {
@@ -149,7 +151,7 @@ export default function HotelSearchPage() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleFavorite = (hotelId) => {
+  const toggleFavorite = (hotelId: number) => {
     const newFavorites = new Set(favorites);
     if (newFavorites.has(hotelId)) {
       newFavorites.delete(hotelId);
@@ -436,7 +438,7 @@ export default function HotelSearchPage() {
                       </div>
                       <div className="text-sm text-gray-500 mb-2">per night</div>
                       <div className="text-xs text-green-600 font-semibold">
-                        Save ${hotel.originalPrice - hotel.price}!
+                        Save ${Number(hotel.originalPrice) - Number(hotel.price)}!
                       </div>
                     </div>
                   </div>
@@ -449,7 +451,7 @@ export default function HotelSearchPage() {
                   {/* Amenities */}
                   <div className="flex flex-wrap gap-3 mb-8">
                     {hotel.amenities.slice(0, 5).map((amenity, idx) => {
-                      const IconComponent = amenityIcons[amenity] || Coffee;
+                      const IconComponent = amenityIcons[amenity as AmenityIconKey] || Coffee;
                       return (
                         <div 
                           key={idx}

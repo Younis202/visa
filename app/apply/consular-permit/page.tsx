@@ -8,9 +8,14 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 
+type FormData = {
+  purpose?: string;
+  [key: string]: any;
+};
+
 export default function ConsularPermitPage() {
   const [currentStep, setCurrentStep] = useState(1);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState<FormData>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const steps = [
@@ -27,7 +32,7 @@ export default function ConsularPermitPage() {
     { value: "other", label: "Other Official Business", icon: Plus, color: "orange" }
   ];
 
-  const handleInputChange = (field, value) => {
+  const handleInputChange = (field: string, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
@@ -311,12 +316,12 @@ export default function ConsularPermitPage() {
                   />
                 </div>
 
-                {formData.purpose && (
-                  <div className={`bg-gradient-to-r from-${selectedPurpose?.color}-50 to-${selectedPurpose?.color}-100 dark:from-${selectedPurpose?.color}-900/20 dark:to-${selectedPurpose?.color}-800/20 rounded-xl p-4 border border-${selectedPurpose?.color}-200 dark:border-${selectedPurpose?.color}-800`}>
+                {formData.purpose && selectedPurpose && (
+                  <div className={`bg-gradient-to-r from-${selectedPurpose.color}-50 to-${selectedPurpose.color}-100 dark:from-${selectedPurpose.color}-900/20 dark:to-${selectedPurpose.color}-800/20 rounded-xl p-4 border border-${selectedPurpose.color}-200 dark:border-${selectedPurpose.color}-800`}>
                     <div className="flex items-center text-sm">
-                      <selectedPurpose.icon className={`w-4 h-4 mr-2 text-${selectedPurpose?.color}-600`} />
-                      <span className={`font-medium text-${selectedPurpose?.color}-800 dark:text-${selectedPurpose?.color}-300`}>
-                        Selected: {selectedPurpose?.label}
+                      <selectedPurpose.icon className={`w-4 h-4 mr-2 text-${selectedPurpose.color}-600`} />
+                      <span className={`font-medium text-${selectedPurpose.color}-800 dark:text-${selectedPurpose.color}-300`}>
+                        Selected: {selectedPurpose.label}
                       </span>
                     </div>
                   </div>

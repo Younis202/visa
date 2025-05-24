@@ -154,7 +154,7 @@ const whyChooseData = [
 
 export default function OesdExamPage() {
   const [isVisible, setIsVisible] = useState(false);
-  const [hoveredCard, setHoveredCard] = useState(null);
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   useEffect(() => {
     setIsVisible(true);

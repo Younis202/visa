@@ -183,7 +183,7 @@ const stats = [
 
 export default function GoetheExamPage() {
   const [isVisible, setIsVisible] = useState(false);
-  const [hoveredCard, setHoveredCard] = useState(null);
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   useEffect(() => {
     setIsVisible(true);

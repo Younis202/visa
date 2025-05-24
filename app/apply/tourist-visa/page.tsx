@@ -3,9 +3,16 @@
 import { ArrowLeft, Camera, User, MapPin, Mail, Phone, FileText, Calendar, Globe, Heart, CheckCircle2, Plane, Mountain, Building2, Palmtree, Map, Users } from "lucide-react";
 import { useState } from "react";
 
+type FormData = {
+  purpose?: string;
+  nationality?: string;
+  accommodationType?: string;
+  [key: string]: any;
+};
+
 export default function TourismVisaApplication() {
   const [currentStep, setCurrentStep] = useState(1);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState<FormData>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const steps = [
@@ -32,7 +39,7 @@ export default function TourismVisaApplication() {
     "Hotel", "Resort", "Vacation Rental", "Hostel", "Guest House", "Friend/Family", "Other"
   ];
 
-  const handleInputChange = (field, value) => {
+  const handleInputChange = (field: string, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
@@ -52,7 +59,7 @@ export default function TourismVisaApplication() {
     // Handle success
   };
 
-  const selectedTravelPurpose = travelPurposes.find(tp => tp.value === formData.travelPurpose);
+  const selectedTravelPurpose = travelPurposes.find(p => p.value === formData.travelPurpose);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
@@ -322,12 +329,12 @@ export default function TourismVisaApplication() {
                   </select>
                 </div>
 
-                {formData.travelPurpose && (
-                  <div className={`bg-gradient-to-r from-${selectedTravelPurpose?.color}-50 to-${selectedTravelPurpose?.color}-100 dark:from-${selectedTravelPurpose?.color}-900/20 dark:to-${selectedTravelPurpose?.color}-800/20 rounded-xl p-4 border border-${selectedTravelPurpose?.color}-200 dark:border-${selectedTravelPurpose?.color}-800`}>
+                {formData.travelPurpose && selectedTravelPurpose && (
+                  <div className={`bg-gradient-to-r from-${selectedTravelPurpose.color}-50 to-${selectedTravelPurpose.color}-100 dark:from-${selectedTravelPurpose.color}-900/20 dark:to-${selectedTravelPurpose.color}-800/20 rounded-xl p-4 border border-${selectedTravelPurpose.color}-200 dark:border-${selectedTravelPurpose.color}-800`}>
                     <div className="flex items-center text-sm">
-                      <selectedTravelPurpose.icon className={`w-4 h-4 mr-2 text-${selectedTravelPurpose?.color}-600`} />
-                      <span className={`font-medium text-${selectedTravelPurpose?.color}-800 dark:text-${selectedTravelPurpose?.color}-300`}>
-                        Travel Purpose: {selectedTravelPurpose?.label}
+                      <selectedTravelPurpose.icon className={`w-4 h-4 mr-2 text-${selectedTravelPurpose.color}-600`} />
+                      <span className={`font-medium text-${selectedTravelPurpose.color}-800 dark:text-${selectedTravelPurpose.color}-300`}>
+                        Travel Purpose: {selectedTravelPurpose.label}
                       </span>
                     </div>
                   </div>

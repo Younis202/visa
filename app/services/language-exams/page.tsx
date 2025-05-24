@@ -27,7 +27,7 @@ import { useEffect, useState } from "react";
 
 export default function LanguageExamsPage() {
   const [isVisible, setIsVisible] = useState(false);
-  const [hoveredCard, setHoveredCard] = useState(null);
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   useEffect(() => {
     setIsVisible(true);

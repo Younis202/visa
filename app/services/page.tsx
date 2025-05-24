@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import CTASection from "@/components/home/cta-section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";

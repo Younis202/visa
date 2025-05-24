@@ -121,8 +121,8 @@ const popularDestinations = [
 ];
 
 export default function HotelBookingPage() {
+  const [hoveredHotel, setHoveredHotel] = useState<number | null>(null);
   const [searchFocused, setSearchFocused] = useState(false);
-  const [hoveredHotel, setHoveredHotel] = useState(null);
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
