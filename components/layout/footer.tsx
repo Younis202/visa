@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -256,7 +258,7 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
             <div className="flex flex-col sm:flex-row items-center gap-4">
               <p className="text-blue-100/70 text-sm">
-                © {currentYear} SyriJo Travel. All rights reserved.
+                © {currentYear} Visa Welt. All rights reserved.
               </p>
               <div className="flex items-center gap-2 backdrop-blur-sm bg-white/5 border border-white/10 rounded-full px-3 py-1">
                 <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
